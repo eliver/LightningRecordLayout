@@ -1,0 +1,29 @@
+<!--
+ - @Description TODO:
+ - @Author Eric Liang
+ - @Date 2019/10/17 11:26
+ - @Version 1.0
+ -->
+<aura:component description="LightningRecordLayout" controller="LightningRecordLayoutController"
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global">
+
+    <aura:attribute name="parentObjectNameString" type="String" access="global"/>
+    <aura:attribute name="fieldNamesString" type="String" access="global" default="Name"/>
+    <aura:attribute name="mode" type="String" access="global" default="view"/>
+    <aura:attribute name="columns" type="Integer" access="global" default="2"/>
+    <aura:attribute name="objName" type="String" access="global"/>
+    <aura:attribute name="objId" type="String" access="global"/>
+    <aura:attribute name="recordTypeId" type="String" access="global"/>
+    <aura:attribute name="fieldNames" type="String[]" access="global"/>
+    <aura:attribute name="showComponent" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:renderIf isTrue="{!v.showComponent}">
+        <lightning:recordForm recordId="{!v.objId}"
+                              recordTypeId="{!v.recordTypeId}"
+                              objectApiName="{!v.objName}"
+                              fields="{!v.fieldNames}"
+                              columns="{!v.columns}"
+                              mode="{!v.mode}"/>
+    </aura:renderIf>
+</aura:component>
